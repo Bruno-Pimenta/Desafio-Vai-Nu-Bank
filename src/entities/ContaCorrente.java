@@ -53,6 +53,6 @@ public class ContaCorrente extends Conta{
 	
 	@Override
 	public String exibirConta() {
-		return super.exibirConta() + "Limite disponível R$: " + String.format("%.2f", this.limiteDeCredito) + "\n";
+		return "Conta Corrente: "+super.exibirConta() + "Limite disponível R$: " + String.format("%.2f", this.limiteDeCredito) + "\n";
 	}
 }

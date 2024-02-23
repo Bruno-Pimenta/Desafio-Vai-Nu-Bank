@@ -1,6 +1,7 @@
 package services;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -28,11 +29,11 @@ public class ColaboradorService {
 		}while(numeroTitulares == 0);
 		
 		for(int i=0; i<numeroTitulares; i++) {
-			System.out.println("Digite o nome do titular " + i+1);
+			System.out.println("Digite o nome do titular " + (i+1));
 			String nome = sc.next();
-			System.out.println("Digite o cpf do titular " + i+1);
+			System.out.println("Digite o cpf do titular " + (i+1));
 			String cpf = sc.next();
-			System.out.println("Digite a senha do titular " + i+1);
+			System.out.println("Digite a senha do titular " + (i+1));
 			String senha = sc.next();
 			Cliente cliente = new Cliente(nome, cpf, senha);
 			titulares.add(cliente);
@@ -64,16 +65,27 @@ public class ColaboradorService {
 	public void adicionarTitularConta(Scanner sc){
 		System.out.println("Informe o número da conta ");
 		int numeroConta = sc.nextInt();
-		System.out.println("Digite o nome do titular ");
-		String nome = sc.next();
-		System.out.println("Digite o cpf do titular ");
-		String cpf = sc.next();
-		System.out.println("Digite a senha do titular ");
-		String senha = sc.next();
-		Cliente cliente = new Cliente(nome, cpf, senha);
-		Conta.contas.get(numeroConta).getTitulares().add(cliente);
-		System.out.println("Cadastro efetuado com sucesso!");
-		
+		Conta conta = Conta.contas.get(numeroConta);
+		if(conta!= null) {
+			if(conta.getTitulares().size()>2) {
+				System.out.println("Não é possível ter mais de 3 titulares nessa conta");
+			}
+			else {
+				System.out.println("Digite o nome do titular ");
+				sc.nextLine();
+				String nome = sc.nextLine();
+				System.out.println("Digite o cpf do titular ");
+				String cpf = sc.next();
+				System.out.println("Digite a senha do titular ");
+				String senha = sc.next();
+				Cliente cliente = new Cliente(nome, cpf, senha);
+				Conta.contas.get(numeroConta).getTitulares().add(cliente);
+				System.out.println("Cadastro efetuado com sucesso!");
+			}
+		}
+		else {
+			System.out.println("Não existe em nosso sistema uma conta com o número informado");
+		}
 	}
 	
 	public void excluirTitularConta(Scanner sc){
@@ -81,49 +93,65 @@ public class ColaboradorService {
 		int numeroConta = sc.nextInt();
 		System.out.println("Digite o cpf do titular que desvincular dessa conta");
 		String cpf = sc.next();
+		
 		Conta conta = Conta.contas.get(numeroConta);
 		boolean encontrado = false;
-		if(conta.getTitulares().size()>1) {
-			for(Cliente titular : conta.getTitulares()) {
-				if(titular.getCpf().equals(cpf)) {
-					conta.getTitulares().remove(titular);
-					encontrado = true;
-					System.out.println("Exclusão efetuada com sucesso!");
-				}
-			}
-			if(encontrado == false) {
-				System.out.println("O cpf informado não está vinculado a conta");
-			}
-		}
-		else {
-			System.out.println("Não é possível excluir o único titular da conta");
-		}
+		if (conta != null) { 
+	        if(conta.getTitulares().size()>1) {
+	        	Iterator<Cliente> iterator = conta.getTitulares().iterator();
+	        	while (iterator.hasNext()) {
+		            Cliente titular = iterator.next();
+		            if (titular.getCpf().equals(cpf)) {
+		                iterator.remove();
+		                encontrado = true;
+		                System.out.println("Exclusão efetuada com sucesso!");
+		                break; 
+		            }
+		        }
+		        if (!encontrado) {
+		            System.out.println("O cpf informado não está vinculado à conta");
+		        } 
+	        } else {
+	        	System.out.println("Não é possível remover o único titular da conta.");
+	        }
+	    } else {
+	        System.out.println("Conta não encontrada");
+	    }
 	}
 	
 	public void editarTitularConta(Scanner sc){
 		System.out.println("Informe o número da conta ");
 		int numeroConta = sc.nextInt();
-		System.out.println("Digite o nome/novo nome do titular ");
-		String nome = sc.next();
-		System.out.println("Digite o cpf do titular ");
-		String cpf = sc.next();
-		System.out.println("Digite a senha/nova senha do titular ");
-		String senha = sc.next();
-		Cliente cliente = new Cliente(nome, cpf, senha);
-		
+				
 		Conta conta = Conta.contas.get(numeroConta);
 		boolean encontrado = false;
-		for(Cliente titular : conta.getTitulares()) {
-			if(titular.getCpf().equals(cpf)) {
-				conta.getTitulares().remove(titular);
-				conta.getTitulares().add(cliente);
-				System.out.println("Edição efetuada com sucesso!");
-				encontrado = true;
-			}
-		}
-		if(encontrado == false) {
-			System.out.println("O cpf informado não está vinculado a conta");
-		}
+		
+		if (conta != null) { 
+			Iterator<Cliente> iterator = conta.getTitulares().iterator();
+	        System.out.println("Digite o cpf do titular que deseja alterar o nome e/ou senha");
+			String cpf = sc.next();
+        	while (iterator.hasNext()) {
+	            Cliente titular = iterator.next();
+	            if (titular.getCpf().equals(cpf)) {
+	            	System.out.println("Digite o nome/novo nome do titular ");
+	            	sc.nextLine();
+	            	String nome = sc.nextLine();
+	    			System.out.println("Digite a senha/nova senha do titular ");
+	    			String senha = sc.next();
+	    			Cliente cliente = new Cliente(nome, cpf, senha);
+	                iterator.remove();
+	                conta.getTitulares().add(cliente);
+	                encontrado = true;
+	                System.out.println("Edição efetuada com sucesso!");
+	                break; 
+	            }
+	        }
+	        if (encontrado == false) {
+	            System.out.println("O cpf informado não está vinculado à conta");
+	        } 
+	    } else {
+	        System.out.println("Conta não encontrada");
+	    }
 	}
 	
 	public void visualizarTodasContas() {

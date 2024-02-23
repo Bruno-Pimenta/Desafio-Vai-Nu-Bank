@@ -29,8 +29,11 @@ public class LoginColaborador extends Login{
 				System.out.println("Seja vem vindo " + nome);
 				MenuColaborador.menu(sc);
 			}
+			else {
+				System.out.println("Senha incorreta.\n");
+			}
 		} catch (NullPointerException e) {
-			System.out.println("Identificador ou senha incorretos.\n");
+			System.out.println("Identificador não encontrado\n");
 		}
 	}
 	

@@ -28,30 +28,31 @@ public class LoginCliente extends Login{
 	private static void autenticar(int numeroConta, String senha, Scanner sc) {
 		Conta conta = Conta.contas.get(numeroConta);
 		Set<Cliente> titulares = conta.getTitulares();
+		boolean contaCorreta = false;
 		try {
-			if(conta instanceof ContaPoupanca) {
-				for(Cliente titular: titulares) {
-					if(senha.equals(titular.getHashSenha())) {
+			for(Cliente titular: titulares) {
+				if(senha.equals(titular.getHashSenha())) {
+					if(conta instanceof ContaPoupanca) {
 						numeroContaLogin = numeroConta;
 						nome = titular.getNome();
 						ContaPoupanca.rendimentosAniversario((ContaPoupanca)conta);
+						contaCorreta = true;
 						System.out.println("Seja vem vindo " + nome);
 						MenuCliente.menu(sc);
 						break;
 					}
-				}
-			}else if(conta instanceof ContaCorrente) {
-				for(Cliente titular: titulares) {
-					if(senha.equals(titular.getHashSenha())) {
+					else if(conta instanceof ContaCorrente) {
 						numeroContaLogin = numeroConta;
 						nome = titular.getNome();
+						contaCorreta = true;
 						System.out.println("Seja vem vindo " + nome);
 						MenuCliente.menu(sc);
 						break;
 					}
 				}
-			}else {
-				System.out.println("Número da conta ou senha inválidos.");
+			}
+			if(contaCorreta == false) {
+				System.out.println("Senha inválida");
 			}
 		}catch (NullPointerException e) {
 			System.out.println("Conta não encontrada.");

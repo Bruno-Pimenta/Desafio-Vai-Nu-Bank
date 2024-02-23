@@ -20,7 +20,7 @@ public class TesteEntidades {
 		Cliente cliente2 = new Cliente("Lucas", "108", "senha2");
 		Set<Cliente> titulares2 = new HashSet<Cliente>();
 		titulares2.add(cliente2);
-		ContaPoupanca conta2 = new ContaPoupanca((short)104,titulares2, 17, 800);
+		ContaPoupanca conta2 = new ContaPoupanca((short)104, titulares2, 23, 800);
 		Conta.contas.put(conta2.getNumeroConta(), conta2);
 		
 		Colaborador colaborador = new Colaborador ("Brenda", "154", 321, "123");

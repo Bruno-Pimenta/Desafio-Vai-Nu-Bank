@@ -12,7 +12,7 @@ import enums.TipoOperacao;
 public class ClienteService {
 	
 	public void verSaldo() {
-		System.out.println("Saldo: " + String.format("%.2f", Conta.contas.get(LoginCliente.getNumeroContaLogin()).getSaldo()));
+		System.out.println("\nSaldo: " + String.format("%.2f", Conta.contas.get(LoginCliente.getNumeroContaLogin()).getSaldo()));
 	}
 	
 	public void depositar(Scanner sc) {
@@ -91,7 +91,7 @@ public class ClienteService {
 					else if(Conta.contas.get(LoginCliente.getNumeroContaLogin()).getSaldo()>=valor) {
 						Conta.contas.get(LoginCliente.getNumeroContaLogin()).transferir(conta.getNumeroConta(), valor);
 						Operacao operacaoTransferenciaOrigem = new Operacao(TipoOperacao.TRANFERENCIAFEITA, valor, LoginCliente.getNome());
-						Operacao operacaoTransferenciaDestino = new Operacao(TipoOperacao.TRANFERENCIARECEBIDA, valor, LoginCliente.getNome());
+						Operacao operacaoTransferenciaDestino = new Operacao(TipoOperacao.TRANFERENCIARECEBIDA, valor, LoginCliente.getNome() + " - Número da conta: "+LoginCliente.getNumeroContaLogin());
 						Conta.contas.get(LoginCliente.getNumeroContaLogin()).adicionarOperacao(operacaoTransferenciaOrigem);
 						Conta.contas.get(numeroConta).adicionarOperacao(operacaoTransferenciaDestino);
 						System.out.println("Tranferência realizada com sucesso!!");
@@ -103,7 +103,7 @@ public class ClienteService {
 							double valorLimiteUtilizado = -1*(contaCorrente.getSaldo()-valor);
 							contaCorrente.usarLimiteDisponivelTransferir(conta.getNumeroConta(), valor);
 							Operacao operacaoFazerTransferencia = new Operacao(TipoOperacao.TRANFERENCIAFEITA, valor, LoginCliente.getNome());
-							Operacao operacaoReceberTransferencia = new Operacao(TipoOperacao.TRANFERENCIARECEBIDA, valor, LoginCliente.getNome());
+							Operacao operacaoReceberTransferencia = new Operacao(TipoOperacao.TRANFERENCIARECEBIDA, valor, LoginCliente.getNome() + " - Número da conta: "+LoginCliente.getNumeroContaLogin());
 							Operacao operacaoUtilizarLimite = new Operacao(TipoOperacao.UTILIZACAOLIMITES, valorLimiteUtilizado, LoginCliente.getNome());
 							Conta.contas.get(LoginCliente.getNumeroContaLogin()).adicionarOperacao(operacaoFazerTransferencia);
 							Conta.contas.get(LoginCliente.getNumeroContaLogin()).adicionarOperacao(operacaoUtilizarLimite);

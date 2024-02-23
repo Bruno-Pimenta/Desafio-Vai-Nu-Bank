@@ -76,6 +76,6 @@ public class ContaPoupanca extends Conta{
 	
 	@Override
 	public String exibirConta() {
-		return super.exibirConta() + "Dia do aniversário dos rendimentos: " + this.diaDoAniversarioDaConta + "\n";
+		return "Conta Poupança: "+super.exibirConta() + "Dia do aniversário dos rendimentos: " + this.diaDoAniversarioDaConta + "\n";
 	}
 }
