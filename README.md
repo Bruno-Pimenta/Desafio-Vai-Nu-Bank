@@ -31,5 +31,5 @@ Senha: password
 
 ## Screenshots
 
-![Diagrama de Classes](https://github.com/Bruno-Pimenta/Desafio-Vai-Nu-Bank/assets/Diagrama de Classes - Vai NuBank.jpeg)
+![Diagrama de Classes](https://github.com/Bruno-Pimenta/Desafio-Vai-Nu-Bank/blob/main/assets/Diagrama%20de%20Classes%20-%20Vai%20NuBank.jpeg)
 
