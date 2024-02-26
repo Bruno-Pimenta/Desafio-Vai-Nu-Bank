@@ -17,7 +17,7 @@ public class TesteEntidades {
 		ContaCorrente conta = new ContaCorrente((short)104, titulares, 500, 500);
 		Conta.contas.put(conta.getNumeroConta(), conta);
 		
-		Cliente cliente2 = new Cliente("Lucas", "108", "senha2");
+		Cliente cliente2 = new Cliente("Lucas", "108", "password");
 		Set<Cliente> titulares2 = new HashSet<Cliente>();
 		titulares2.add(cliente2);
 		ContaPoupanca conta2 = new ContaPoupanca((short)104, titulares2, 23, 800);

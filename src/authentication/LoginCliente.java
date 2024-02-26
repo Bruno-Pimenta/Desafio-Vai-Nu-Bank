@@ -9,7 +9,7 @@ import entities.ContaCorrente;
 import entities.ContaPoupanca;
 import menu.MenuCliente;
 
-public class LoginCliente extends Login{
+public abstract class LoginCliente extends Login{
 	private static Integer numeroContaLogin = null;
 		
 	public static Integer getNumeroContaLogin() {

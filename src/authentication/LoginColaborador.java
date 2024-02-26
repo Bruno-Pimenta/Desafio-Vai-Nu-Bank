@@ -4,7 +4,7 @@ import java.util.Scanner;
 import entities.Colaborador;
 import menu.MenuColaborador;
 
-public class LoginColaborador extends Login{
+public abstract class LoginColaborador extends Login{
 	private static Integer idColaborador = null;
 		
 	public static Integer getIdColaborador() {

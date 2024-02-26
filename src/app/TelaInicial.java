@@ -4,7 +4,7 @@ import java.util.Scanner;
 import authentication.LoginCliente;
 import authentication.LoginColaborador;
 
-public class TelaInicial {
+public abstract class TelaInicial {
 	public static Scanner sc = new Scanner(System.in);
 
 	public static void inicializar() {

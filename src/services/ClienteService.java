@@ -11,6 +11,10 @@ import enums.TipoOperacao;
 
 public class ClienteService {
 	
+	public ClienteService() {
+		
+	};
+
 	public void verSaldo() {
 		System.out.println("\nSaldo: " + String.format("%.2f", Conta.contas.get(LoginCliente.getNumeroContaLogin()).getSaldo()));
 	}

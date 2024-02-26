@@ -22,10 +22,6 @@ public abstract class Conta {
 	private double saldo;
 	protected List<Operacao> historicoOperacoes = new LinkedList<>();
 	
-	public void adicionarOperacao(Operacao operacao) {
-		historicoOperacoes.add(0, operacao);
-	}
-	
 	public Conta(short agencia, Set<Cliente> titulares, double saldo) {
 		this.agencia = agencia;
 		this.numeroConta = contadorConta+1;
@@ -60,6 +56,10 @@ public abstract class Conta {
 	
 	public void depositar(double valor) {
 		setSaldo(getSaldo()+valor);
+	}
+	
+	public void adicionarOperacao(Operacao operacao) {
+		historicoOperacoes.add(0, operacao);
 	}
 	
 	public String exibirConta() {

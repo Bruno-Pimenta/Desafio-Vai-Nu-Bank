@@ -4,7 +4,7 @@ import java.util.Scanner;
 import authentication.LoginColaborador;
 import services.ColaboradorService;
 
-public class MenuColaborador {
+public abstract class MenuColaborador {
 	
 	public static void menu(Scanner sc) {
 		int digito = 0;
@@ -12,12 +12,12 @@ public class MenuColaborador {
 		
 		do {
 			System.out.println("Insira o digito referente a operação desejada:");
-			System.out.println("1 - Criar conta"
-					+ "\n2 - Cadastro de pessoa em conta"
-					+ "\n3 - Exclusão de pessoa em conta"
-					+ "\n4 - Edição de pessoa em conta"
+			System.out.println("1 - Cadastrar Conta"
+					+ "\n2 - Adicionar titular em conta"
+					+ "\n3 - Excluir titular de conta"
+					+ "\n4 - Editar informação de um titular"
 					+ "\n5 - Visualizar todas as contas"
-					+ "\n6 - Buscar conta pelo numero"
+					+ "\n6 - Buscar conta pelo seu número"
 					+ "\n7 - Sair");
 			digito = sc.nextInt();
 			switch(digito) {

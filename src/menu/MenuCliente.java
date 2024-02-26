@@ -5,14 +5,15 @@ import java.util.Scanner;
 import authentication.LoginCliente;
 import services.ClienteService;
 
-public class MenuCliente {
+public abstract class MenuCliente {
 	
 	public static void menu(Scanner sc) {
 		ClienteService clienteService = new ClienteService();
 		int digito = 0;
 		do {
-			System.out.println("1 - Exibir informações da conta\n2 - Saldo\n3 - Depósito\n4 - Saque\n5 - Transferência"
-					+ "\n6 - Exibir movimentação da conta"
+			System.out.println("1 - Exibir informações da conta\n2 - Consultar Saldo\n3 - Depositar\n4 - Sacar"
+					+ "\n5 - Transferir"
+					+ "\n6 - Exibir histórico de movimentação da conta"
 					+ "\n7 - Logout");
 			System.out.println("Insira o digito referente a operação desejada:");
 			try {
